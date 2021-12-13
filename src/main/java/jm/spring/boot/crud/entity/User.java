@@ -7,6 +7,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,18 +27,26 @@ public class User implements UserDetails {
     private int id;
 
     @Column(name="email")
+    @NotBlank(message = "(обязательный параметр)")
     private String email;   //уникальное значение
 
     @Column(name="name")
+    @NotBlank(message = "(обязательный параметр)")
+    @Size(min = 4, message = "(минимум 4 символа)")
     private String name;
 
     @Column(name="last_name")
+    @NotBlank(message = "(обязательный параметр)")
+    @Size(min = 4, message = "(минимум 4 символа)")
     private String lastName;
 
+    
     @Column(name="age")
+    @Min(value=)
     private byte age;
 
     @Column(name="password")
+    @Size(min = 4, message = "(минимум 4 символа)")
     private String password;
 
     @Transient

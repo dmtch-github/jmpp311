@@ -9,10 +9,14 @@
     <div>
         <input type="hidden" th:field="${user.id}"/>
 
-        <label th:utext="#{table.column.name} + '<br>'">Name</label>
+        <label th:utext="#{table.column.name}">Name</label>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+        <br>
         <input type="text" th:field="*{name}" placeholder="string" />
         <br>
-        <label th:utext="#{table.column.lastName} + '<br>'">Last Name</label>
+        <label th:utext="#{table.column.lastName}">Last Name</label>
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Lastname Error</span>
+        <br>
         <input type="text" th:field="*{lastName}" placeholder="string" />
         <br>
         <label th:utext="#{table.column.age} + '<br>'">Age</label>
@@ -21,7 +25,9 @@
         <label th:utext="#{table.column.email} + '<br>'">Email</label>
         <input type="text" th:field="*{email}" placeholder="string" />
         <br>
-        <label th:utext="#{table.column.password} + '<br>'">Password</label>
+        <label th:utext="#{table.column.password}">Password</label>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+        <br>
         <input type="password" th:field="*{password}" placeholder="string" />
         <br>
         <label th:utext="#{table.column.role} + '<br>'">Role</label>

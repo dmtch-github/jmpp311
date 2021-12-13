@@ -15,11 +15,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -101,7 +100,11 @@ public class AdminController {
      * и перенаправляет на главную страницу
      */
     @PostMapping(value = "", params = "save")
-    public String saveUser(User user) {
+    public String saveUser(@Valid @ModelAttribute("user") User user,
+                           BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "edit-user";
+        }
         userService.saveUser(user);
         //для текущего пользователя делаем динамическую авторизацию: смена прав
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
