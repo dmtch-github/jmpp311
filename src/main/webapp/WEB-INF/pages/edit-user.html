@@ -10,26 +10,35 @@
         <input type="hidden" th:field="${user.id}"/>
 
         <label th:utext="#{table.column.name}">Name</label>
-        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+        <span th:if="${#fields.hasErrors('name')}" th:style="${'color:red;'}" th:errors="*{name}">Name Error</span>
         <br>
         <input type="text" th:field="*{name}" placeholder="string" />
         <br>
+
         <label th:utext="#{table.column.lastName}">Last Name</label>
-        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Lastname Error</span>
+        <span th:if="${#fields.hasErrors('lastName')}" th:style="${'color:red;'}" th:errors="*{lastName}">Lastname Error</span>
         <br>
         <input type="text" th:field="*{lastName}" placeholder="string" />
         <br>
-        <label th:utext="#{table.column.age} + '<br>'">Age</label>
+
+        <label th:utext="#{table.column.age}">Age</label>
+        <span th:if="${#fields.hasErrors('age')}" th:style="${'color:red;'}" th:errors="*{age}">Age Error</span>
+        <br>
         <input type="number" th:field="*{age}"  placeholder="integer" />
         <br>
-        <label th:utext="#{table.column.email} + '<br>'">Email</label>
+
+        <label th:utext="#{table.column.email}">Email</label>
+        <span th:if="${#fields.hasErrors('email')}" th:style="${'color:red;'}" th:errors="*{email}">Email Error</span>
+        <br>
         <input type="text" th:field="*{email}" placeholder="string" />
         <br>
+
         <label th:utext="#{table.column.password}">Password</label>
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+        <span th:if="${#fields.hasErrors('password')}" th:style="${'color:red;'}" th:errors="*{password}">Password Error</span>
         <br>
-        <input type="password" th:field="*{password}" placeholder="string" />
+        <input type="text" th:field="*{password}" placeholder="string" />
         <br>
+
         <label th:utext="#{table.column.role} + '<br>'">Role</label>
         <input type="text" th:field="*{textRoles}" placeholder="string" />
     </div>

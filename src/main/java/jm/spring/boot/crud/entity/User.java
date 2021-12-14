@@ -1,5 +1,6 @@
 package jm.spring.boot.crud.entity;
 
+import jm.spring.boot.crud.entity.validate.SizeNotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,6 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
@@ -27,26 +30,24 @@ public class User implements UserDetails {
     private int id;
 
     @Column(name="email")
-    @NotBlank(message = "(обязательный параметр)")
+    @Email(message = "(обязательный параметр)")
     private String email;   //уникальное значение
 
     @Column(name="name")
-    @NotBlank(message = "(обязательный параметр)")
-    @Size(min = 4, message = "(минимум 4 символа)")
+    @SizeNotBlank(min = 4, message = "(минимум 4 символа)")
     private String name;
 
     @Column(name="last_name")
-    @NotBlank(message = "(обязательный параметр)")
-    @Size(min = 4, message = "(минимум 4 символа)")
+    @SizeNotBlank(min = 4, message = "(минимум 4 символа)")
     private String lastName;
 
     
     @Column(name="age")
-    @Min(value=)
+    @Min(value = 12, message = "(от 12 лет)")
     private byte age;
 
     @Column(name="password")
-    @Size(min = 4, message = "(минимум 4 символа)")
+    @SizeNotBlank(min = 3, message = "(минимум 3 символа)")
     private String password;
 
     @Transient
